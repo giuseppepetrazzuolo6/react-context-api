@@ -1,30 +1,16 @@
-import axios from "axios"
-import { useState, useEffect } from "react"
+import { useContext } from "react";
+import BudgetContext from "../contexts/BudgetContext";
 import { Link } from 'react-router-dom';
 
 export default function Products() {
-    const productsApiUrl = 'https://fakestoreapi.com/products'
-    const [products, setProducts] = useState([])
-
-    function getProducts() {
-        axios.get(productsApiUrl)
-            .then(response => {
-                const productsList = response.data
-                setProducts(productsList)
-            })
-            .catch(error => console.error(error))
-    }
-
-    useEffect(() => {
-        getProducts();
-    }, []);
+    const { filteredProducts } = useContext(BudgetContext)
 
     return (
         <div className="container p-4">
             <h1>I nostri Articoli</h1>
             <div className="row g-3">
                 {
-                    products.map(item =>
+                    filteredProducts.map(item =>
                         < div className="col-12 col-md-6 col-lg-4" key={item.id}>
                             <div className="card h-100">
                                 <div className="card-img-top p-3">

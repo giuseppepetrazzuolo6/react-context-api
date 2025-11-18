@@ -10,10 +10,14 @@ import Product from "./pages/Product"
 function App() {
   const [budgetMode, setBudgetMode] = useState(false)
 
+  function toggleBudgetMode() {
+    setBudgetMode(budget => !budget)
+  }
+
   return (
     <>
 
-      <BudgetContext.Provider value={{ budgetMode, setBudgetMode }}>
+      <BudgetContext.Provider value={{ budgetMode, setBudgetMode, toggleBudgetMode }}>
         <BrowserRouter>
           <Routes>
             <Route element={<DefaultLeyout />} >
